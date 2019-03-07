@@ -94,6 +94,12 @@ def mmf_s(_hMmf, _s , _debugMode = 0):
     mmf_yHdr(_hMmf,win0.yHdr_s(_s))
 
 
+def mmf_ws(_hMmf, _s , _debugMode = 0):
+    if(_debugMode == 1):
+        print("mmf_ws")
+    mmf_yHdr(_hMmf,win0.yHdr_ws(_s))
+
+
 
 def openMmf(_nMmf, _debugMode = 0 ):
 
@@ -160,10 +166,16 @@ def yHdr_mmf(_hMmf, _debugMode = 0):
 
 def s_mmf(_hMmf, _debugMode = 0):
     if (_debugMode == 1):
-        print("yHdr_mmf")
+        print("s_mmf")
 
     return win0.s_yHdr(yHdr_mmf(_hMmf))
 
+
+def ws_mmf(_hMmf, _debugMode = 0):
+    if (_debugMode == 1):
+        print("ws_mmf")
+
+    return win0.ws_yHdr(yHdr_mmf(_hMmf))
 
 
 
@@ -172,6 +184,9 @@ def s_mmf(_hMmf, _debugMode = 0):
 class MmfWriter:
 
     def __init__(self, _nMmf="mmftest_pchr", _size=SHMEMSIZE, _debugMode = 0):
+        if (_debugMode == 1):
+            print("MmfWriter()")
+
         self.nMmf = _nMmf
         self.debugMod = _debugMode
         self.size = _size
@@ -179,6 +194,9 @@ class MmfWriter:
 
     def mmf_s(self, _string):
         mmf_s(self.handle, _string, self.debugMod)
+
+    def mmf_ws(self, _string):
+        mmf_ws(self.handle, _string, self.debugMod)
 
     def mmf_yHdr(self, _yHdr):
         mmf_yHdr(self.handle,_yHdr, self.debugMod)
@@ -191,16 +209,27 @@ class MmfWriter:
 class MmfReader:
 
     def __init__(self, _nMmf = "mmftest_pchr", _size = SHMEMSIZE, _debugMode = 0):
+        if (_debugMode == 1):
+            print("MmfReader()")
+
         self.nMmf = _nMmf
         self.debugMod = _debugMode
         self.size = _size
         self.handle = openMmf(self.nMmf,self.debugMod)
 
     def s_mmf(self):
+
         return s_mmf(openMmf(self.nMmf, self.debugMod))
+
+    def ws_mmf(self):
+
+        return ws_mmf(openMmf(self.nMmf, self.debugMod))
+
 
     def yHdr_mmf(self):
         return yHdr_mmf(openMmf(self.nMmf, self.debugMod))
 
     def __del__(self):
         closeMmf(self.handle, self.debugMod)
+
+

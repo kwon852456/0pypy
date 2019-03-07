@@ -167,10 +167,10 @@ def s_yHdr(yhdr):
 
     sizeOfData = y4.i1
     
-    print(f"sizeOfData = {sizeOfData}")
+    #print(f"sizeOfData = {sizeOfData}")
     
     rawData = yhdr[32:sizeOfData]   
-    return rawData
+    return rawData.decode("utf-8")
 
 def ws_yHdr(yhdr):
     y4 = Y4()
@@ -182,7 +182,7 @@ def ws_yHdr(yhdr):
 
     sizeOfData = y4.i1
     
-    print(f"sizeOfData = {sizeOfData}")
+    #print(f"sizeOfData = {sizeOfData}")
     
     rawData = yhdr[32:sizeOfData]
     

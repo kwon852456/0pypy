@@ -1,19 +1,9 @@
-'''
-import sys
-from PyQt5.QtGui import *
-import PyQt5
-import ctypes
-import win32con, win32api, win32gui,
-import struct
-from array import array
-# pip install pypiwin32
-'''
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 import ctypes.wintypes
 import ctypes, ctypes.wintypes, sys
-import py1win0
+import py1win0 as win0
 
 
 
@@ -43,7 +33,7 @@ class MyWindow(QMainWindow, form_class):
                 print("dwData=%d cbData=0x%x lpData=0x%x" % (pCDS.contents.dwData, pCDS.contents.cbData, pCDS.contents.lpData))
 
                 yHdr = ctypes.string_at(pCDS.contents.lpData,255)
-                stringToReturn = header.s_yHdr(yHdr)
+                stringToReturn = win0.s_yHdr(yHdr)
                 QMessageBox.about(self,"message", stringToReturn.decode("utf-8"))
 
 
